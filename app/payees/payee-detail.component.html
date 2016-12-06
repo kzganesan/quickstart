@@ -3,7 +3,9 @@
     Payee Details {{payee.payeeName}}
   </div>
 <ul class="list-group">
-  <li class="list-group-item">{{payee.payeeName}}</li>
+  <li class="list-group-item" [class.list-group-item-success] = "x>5"
+      [style.background-color] = "y>5 ? 'red' : 'green' "
+      [ngClass] = getClasses()>{{payee.payeeName}}</li>
   <li class="list-group-item">{{payee.address}}</li>
   <li class="list-group-item">{{payee.city}}{{payee.state}}</li>
   <li class="list-group-item">{{payee.motto}}</li>

@@ -7,11 +7,21 @@ import {Payee} from "./Payee";
 
 @Component({
   selector:'payee-detail',
-  templateUrl: 'app/payees/payee-detail.component.html'
+  templateUrl: 'app/payees/payee-detail.component.html',
+  styles: [
+    '.foo {text-decoration: underline}',
+    '.bar {color: orange}',
+    '.baz {font-family: Broadway}'
+  ]
 })
 export class PayeeDetail{
 //payee:Payee = PAYEES[7];
 
   @Input()
   payee:Payee;
+  x=14;
+
+  getClasses(){
+    return ['foo', 'bar', 'baz'];
+  }
 }
