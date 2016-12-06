@@ -1,9 +1,25 @@
 <div class="row"><div class="col-md-8">
   <h1>Welcome to our Banking Application</h1>
 </div></div>
-<div>{{payees[0].payeeName}}</div>
 <div class="row">
+  <div class="col-md-6">
+    <payee-list></payee-list>
+  </div>
+</div>
+
+<!--div class="row">
+  <div class="col-md-6">
+    <payee-detail [payee]="payees[6]"></payee-detail>
+  </div>
+</div-->
+<!--div>{{payees[0].payeeName}}</div>
+<button class="btn btn-primary" (click)="showHandler()">Show</button>
+<div class="row" [hidden]="showGrid">
   <div class="col-md-6">
     <payee-detail [payee]="payees[6]"></payee-detail>
   </div>
 </div>
+<div class="col-md-8">
+  <p></p>
+  <button class="btn btn-primary" (click)="testHandler($event)">Click</button>
+</div-->

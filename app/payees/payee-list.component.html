@@ -1,0 +1,13 @@
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    Payee List
+  </div>
+  <ul class="list-group">
+    <li class="list-group-item" *ngFor="let tx of payee" (click)="selectedPayee = tx">{{tx.payeeName}} - {{tx.payeeId}}</li>
+  </ul>
+</div>
+<div class="row" *ngIf="selectedPayee">
+  <div class="col-md-6">
+    <payee-detail [payee]="selectedPayee"></payee-detail>
+  </div>
+</div>
