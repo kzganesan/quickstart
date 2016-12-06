@@ -1,4 +1,4 @@
-import { Payee } from './Payee';
+import { Payee } from './payee';
 
 export const PAYEES: Payee[] = [
   new Payee( {
