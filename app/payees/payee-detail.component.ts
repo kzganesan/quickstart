@@ -22,6 +22,11 @@ export class PayeeDetail{
   x=14;
 
   getClasses(){
-    return ['foo', 'bar', 'baz'];
+    //return ['foo', 'bar', 'baz'];
+    return {
+      foo: true,
+      bar: false,
+      baz: true
+    }
   }
 }
