@@ -1,24 +1,24 @@
 import { Component } from '@angular/core';
-import { PAYEES} from './payees/mock-payees'
-@Component({
+
+@Component( {
   selector: 'banking-app',
   templateUrl: 'app/app.component.html',
-})
-export class AppComponent  { name = 'Angular';
-payees = PAYEES; showGrid = true; selectedId = 0;
+} )
+export class AppComponent {
+  title = 'The Super-Fake Banking Corporation';
+  motto = 'Doing banking-type stuff since 1948';
 
-  testHandler(){
-    console.log("test");
+  views = {
+    transactions: true,
+    payees:       false
+  };
+
+  toggleView( viewName: string ) {
+    if ( this.views.hasOwnProperty( viewName ) ) {
+      for ( let v in this.views ) {
+        this.views[ v ] = v === viewName ? true : false
+      }
+    }
   }
-
-  testHandler(event){
-    console.log(event);
-  }
-
-  showHandler(){
-    this.showGrid = !this.showGrid;
-    console.log(this.showGrid);
-
-  }
-
 }
+

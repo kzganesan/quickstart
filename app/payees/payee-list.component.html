@@ -1,13 +1,10 @@
-<div class="panel panel-primary">
-  <div class="panel-heading">
-    Payee List
+<div class="panel panel-danger">
+  <div class="panel-heading"><h3>Payee List component
+    <span class="pull-right badge">{{ payees.length }}</span></h3>
   </div>
   <ul class="list-group">
-    <li class="list-group-item" *ngFor="let tx of payee" (click)="selectedPayee = tx">{{tx.payeeName}} - {{tx.payeeId}}</li>
+    <li *ngFor="let payee of payees" (click)="selectPayee(payee)"
+        class="list-group-item">{{ payee.payeeName }}
+    </li>
   </ul>
-</div>
-<div class="row" *ngIf="selectedPayee">
-  <div class="col-md-6">
-    <payee-detail [payee]="selectedPayee"></payee-detail>
-  </div>
 </div>

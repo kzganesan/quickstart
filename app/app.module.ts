@@ -2,12 +2,12 @@ import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent }  from './app.component';
-import {PayeeDetail} from "./payees/payee-detail.component";
-import {PayeeList} from "./payees/payee-list.component";
+import { PayeesModule } from './payees/payees.module';
 
-@NgModule({
-  imports:      [ BrowserModule ],
-  declarations: [ AppComponent,PayeeDetail,PayeeList ],
-  bootstrap:    [ AppComponent ]
-})
-export class AppModule { }
+@NgModule( {
+  imports     : [ BrowserModule, PayeesModule ],
+  declarations: [ AppComponent ],
+  bootstrap   : [ AppComponent ]
+} )
+export class AppModule {
+}

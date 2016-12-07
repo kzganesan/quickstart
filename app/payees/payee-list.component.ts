@@ -1,21 +1,25 @@
-/**
- * Created by Administrator on 12/5/2016.
- */
-import {Component, Input} from '@angular/core'
-import {PAYEES} from "./mock-payees";
-import {Payee} from "./Payee";
-//import {AppComponent} from "../app.component";
+import { Component, Output, EventEmitter,Input } from '@angular/core';
+import { Payee } from './Payee';
+import {PAYEES} from './mock-payees';
 
 @Component({
-  selector:'payee-list',
-  templateUrl: 'app/payees/payee-list.component.html'
-})
-export class PayeeList{
-  @Input()
-  payee:Payee[] = PAYEES;
+  selector: 'payee-list',
+  templateUrl: 'app/payees/payee-list.component.html',
+  styles: [
+    `li:hover { background-color: aquamarine; cursor: pointer}`
+  ]
 
-  testHandler(id){
-    console.log(id);
-    //AppComponent.selectedId = id;
+})
+export class PayeeList {
+
+  @Input()
+  payees: Payee[];
+
+  @Output()
+  onPayeeSelect = new EventEmitter<Payee>()
+
+  selectPayee(payee:Payee) {
+    console.log( 'You selected: ', payee );
+    this.onPayeeSelect.emit( payee );
   }
 }
