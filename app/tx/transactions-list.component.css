@@ -1,0 +1,12 @@
+li {
+    cursor: pointer;
+}
+li:hover {
+    background-color: lightskyblue;
+}
+.tx-list {
+    border-right: black 2px solid
+}
+.selected {
+    background-color: greenyellow;
+}

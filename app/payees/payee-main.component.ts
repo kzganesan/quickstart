@@ -1,21 +1,39 @@
-import {Component} from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Payee } from './Payee';
-import {PayeeDAO} from "./payee-dao.service";
+import { PayeeDAO } from './payee-dao.service';
+import { Subscribable } from 'rxjs/Observable';
+import { Subscription } from 'rxjs';
 
-
-@Component({
-  selector: 'payee-main',
+@Component( {
+  selector   : 'payee-main',
   templateUrl: 'app/payees/payee-main.component.html'
-})
-export class PayeeMain {
-  payees: Payee[] = this.dao.getAll();
-  selectedPayee:Payee;
+} )
+export class PayeeMain implements OnInit, OnDestroy {
 
-  constructor(private dao: PayeeDAO){}
+  lastSubscription: Subscription;
+  payees: Payee[];
+  selectedPayee: Payee;
 
-  pickedPayee(payee:Payee) {
-    console.log( 'You picked ', payee );
-    this.selectedPayee = payee;
+  constructor( private dao: PayeeDAO ) {
   }
 
+  ngOnInit() {
+    console.log( 'PayeeMain.onInit()' );
+    this.dao.getAll().then( payees => this.payees = payees )
+  }
+
+  pickedPayee( payee: Payee ) {
+    console.log( 'You picked ', payee );
+    this.lastSubscription = this.dao.get( payee.payeeId )
+      .subscribe( payee => {
+        this.selectedPayee = payee;
+      }, error => {
+        console.error( 'Error! ', error );
+      } );
+
+  }
+
+  ngOnDestroy() {
+    this.lastSubscription.unsubscribe();
+  }
 }

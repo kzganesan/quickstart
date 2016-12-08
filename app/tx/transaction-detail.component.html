@@ -1,0 +1,12 @@
+<div *ngIf="tx">
+  <ul class="list-group">
+    <li class="list-group-item list-group-item-info">
+      <span class="badge">txid: {{ tx.txId }}</span>
+      {{ tx.amount | currency:'USD':true }} to {{ tx.payee.payeeName }} on {{ tx.txDate | date:'MMM dd, yyyy' }}
+    </li>
+    <li class="list-group-item">Payee Name: {{ tx.payee.payeeName }} ({{ tx.payee.city }}, {{ tx.payee.state }})</li>
+    <!--<li>Category: {{ tx.category.categoryName }}</li>-->
+    <li class="list-group-item">Amount: {{ tx.amount | currency:'USD':true}}</li>
+    <li class="list-group-item">{{ tx.txType }} [{{ tx.txStatus }}]</li>
+  </ul>
+</div>

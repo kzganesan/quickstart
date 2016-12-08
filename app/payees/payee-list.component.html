@@ -1,4 +1,4 @@
-<div class="panel panel-danger">
+<div class="panel panel-danger" *ngIf="payees">
   <div class="panel-heading"><h3>Payee List component
     <span class="pull-right badge">{{ payees.length }}</span></h3>
   </div>
@@ -8,3 +8,4 @@
     </li>
   </ul>
 </div>
+

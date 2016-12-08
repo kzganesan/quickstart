@@ -1,6 +1,5 @@
-import { Component, Output, EventEmitter,Input } from '@angular/core';
+import { Component, Output, EventEmitter, Input } from '@angular/core';
 import { Payee } from './Payee';
-import {PAYEES} from './mock-payees';
 
 @Component({
   selector: 'payee-list',
@@ -11,7 +10,6 @@ import {PAYEES} from './mock-payees';
 
 })
 export class PayeeList {
-
   @Input()
   payees: Payee[];
 

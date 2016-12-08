@@ -1,35 +1,51 @@
-import {Injectable} from "@angular/core";
-import {Payee} from "./Payee";
-import {PAYEES} from './mock-payees';
+import { Injectable } from '@angular/core'
+import { Http } from '@angular/http';
+import { PAYEES } from './mock-payees';
+import { Payee } from './Payee';
+import '../common/rxjs-operators'
+import { Observable } from 'rxjs';
 
-/**
- * Created by Administrator on 12/7/2016.
- */
 @Injectable()
+export class PayeeDAO {
+  private PAYEES: Payee[] = PAYEES;
+  private url = 'http://localhost:7100/banking/payee/';
 
-export class PayeeDAO{
-  private PAYEES:Payee[] = PAYEES;
-
-  get(id: number): Payee{
-    let foundPayee: Payee = null;
-
-    PAYEES.some(payee => {
-      if(payee.payeeId === id){
-        foundPayee = payee;
-        return true
-      }
-      return false;
-    })
-
-    return foundPayee;
+  constructor( private http: Http ) {
   }
 
-  findByPayeeName(payeeName: string): Payee[]{
-    return PAYEES.filter(payee => payee.payeeName == payeeName)
+  get( id: number ): Observable<Payee> {
+
+    return this.http.get( this.url + id )
+      .map( response => response.json() as Payee )
+      .catch( this.handleError );
   }
 
-  getAll():Payee[]{
-    return[...PAYEES];
+  handleError( error: any ) {
+    console.error( 'PayeeDAO ERROR: ', error );
+    return Observable.throw( { message: 'Something went wrong here.' } );
+  }
+
+  getAsPromise( id: number ): Promise<Payee> {
+    let p1 = this.http.get( this.url + id ).toPromise();
+    let p2 = p1.then( response => response.json(),
+      error => {
+        console.log( 'P1 error: ', error );
+        return Promise.reject( { message: error.statusText } );
+      } );
+
+    let p3 = p2.then( data => {
+      return new Payee( data );
+    } );
+
+    return p3;
+  }
+
+  findByPayeeName( payeeName: string ): Promise<Payee[]> {
+    return Promise.resolve( PAYEES.filter( payee => payee.payeeName === payeeName ) )
+  }
+
+  getAll(): Promise<Payee[]> {
+    return Promise.resolve( [ ...PAYEES ] );
   }
 
 }

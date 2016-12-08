@@ -1,0 +1,15 @@
+<div class="container-fluid">
+  <div class="row text-center">
+    <h1>Transactions List Component</h1>
+  </div>
+  <div class="row">
+    <div class="col-md-6 tx-list">
+      <ul>
+        <li *ngFor="let tx of txs" (click)="onSelect(tx)" [class.selected]="tx.txId === selectedTx?.txId">{{ tx.payee.payeeName }} ({{ tx.amount | currency:'USD':true }})</li>
+      </ul>
+    </div>
+    <div class="col-md-6">
+      <transaction-detail [tx]="selectedTx"></transaction-detail>
+    </div>
+  </div>
+</div>

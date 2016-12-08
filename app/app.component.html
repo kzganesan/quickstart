@@ -16,4 +16,6 @@
     </div>
   </div>
 </nav>
-<payee-main></payee-main>
+
+<transactions-list *ngIf="views['transactions']"></transactions-list>
+<payee-main *ngIf="views['payees']"></payee-main>

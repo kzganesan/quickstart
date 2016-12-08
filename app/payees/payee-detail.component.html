@@ -1,11 +1,12 @@
 <div class="panel panel-primary">
   <div class="panel-heading">
-    Payee Details for {{ payee.payeeName }}
+    Payee Details for {{ payee.payeeName | uppercase }}
   </div>
   <ul class="list-group">
-    <li class="list-group-item">{{ payee.payeeName | uppercase }} [Payee ID: {{ payee.payeeId }}]</li>
+    <li class="list-group-item">{{ payee.payeeName }} [Payee ID: {{ payee.payeeId }}]</li>
     <li class="list-group-item">{{ payee.address }}</li>
     <li class="list-group-item">{{ payee.city }}, {{ payee.state }}</li>
     <li class="list-group-item">{{ payee.motto }}</li>
   </ul>
 </div>
+
